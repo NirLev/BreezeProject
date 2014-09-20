@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Breeze Application Calculator</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/index.css" %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/odometer-theme-minimal.css' %}" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/2.1.0/normalize.css" />
+    <link rel="stylesheet" href="{% static 'css/themes/month_white.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/themes/month_green.css' %} " />
+    <link rel="stylesheet" href="{% static 'css/themes/month_transparent.css' %} " />
+    <link rel="stylesheet" href="{% static 'css/themes/calendar_transparent.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/themes/calendar_white.css' %} " />
+    <link rel="stylesheet" href="{% static 'css/themes/calendar_green.css' %} " />
+    <link rel="stylesheet" href="{% static 'css/themes/navigator_green.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/themes/navigator_white.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/themes/areas.css' %}" />
+</head>
+<body>
+{% verbatim %}
+    <script type="text/x-handlebars">
+        <div id="center-wrapper">
+            <div id="stats-movieadd-container">
+                <div id="movieadd-container">
+                    {{outlet "newMovieAction"}}
+                </div>
+                <div id="stats-container">
+                    <div class="header-title">
+                        <h1>Statistics</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+<script type="text/x-handlebars" data-template-name="add-movie">
+    <div class="header-title">
+        <h2>Calculate how much working with Breeze gives you</h2>
+        {{#if model.isNameViewed }}
+            {{calc-salary next="saveSalary" salary= model.salary}}
+        {{else }}
+            {{#if model.isRankViewed }}
+                {{calc-timeline next="saveTimeline" hours=model.hours}}
+            {{else}}
+                {{calc-table next="saveSummary"}}
+            {{/if }}
+        {{/if }}
+        {{movie-modal}}
+    </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="components/calc-salary">
+<div id="movie-name-wrapper">
+    <h3>What is your current salary?</h3>
+    <h5>Don't worry, you can change this later</h5>
+    {{view Ember.TextField id="movie-name-input" class="form-control" maxlength=8 valueBinding="salary"}}
+    <!--<div id="name-error"></div>-->
+    <input type="submit" class="btn btn-primary" value="Next" {{action "next"}}>
+</div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="components/calc-timeline">
+<div id="movie-name-wrapper">
+    <h3>When will you be available for driving?</h3>
+    <div id="overall-hours">{{ hours }}</div>
+    <div id="dp"></div>
+    <input type="submit" class="btn btn-primary" value="Next" {{action "next"}}>
+</div>
+</script>
+
+<script type="text/x-handlebars" data-template-name='components/calc-table'>
+<div id="movie-rank-summary">
+    <table id="table-container">
+        <tbody>
+            <tr class="row-container">
+                <td>Salary</td>
+                <td>{{salary}}</td>
+            </tr>
+            <tr class="row-container">
+                <td>Hours</td>
+                <td>{{ hours }}</td>
+            </tr>
+            <tr class="row-container">
+                <td>Hours</td>
+                <td>{{ hours }}</td>
+            </tr>
+            <tr class="row-container">
+                <td>Hours</td>
+                <td>{{ hours }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="components/movie-modal">
+<div id="results-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Rating results</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</script>
+
+{% endverbatim %}
+
+<script src="{% static "js/jquery.js" %}"></script>
+<script src="{% static "js/handlebars-v1.3.0.js" %}"></script>
+<script src="{% static "js/ember.js" %}"></script>
+<script src="{% static "js/ember-data.js" %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<script src="{% static "js/src/daypilot-common.src.js" %}"></script>
+<script src="{% static "js/src/daypilot-calendar.src.js" %}"></script>
+<script src="{% static "js/odometer.js" %}"></script>
+<script src="{% static "js/app.js" %}"></script>
+<script src="{% static "js/models.js" %}"></script>
+<script src="{% static "js/router.js" %}"></script>
+<script src="{% static "js/views.js" %}"></script>
+</body>
+</html>

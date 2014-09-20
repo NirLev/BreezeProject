@@ -1,0 +1,41 @@
+@import "reset";
+@import "addmovie";
+
+@right-width: 25%;
+@left-width: 25%;
+
+
+.column_properties() {
+  float: left;
+  height: 100%;
+}
+
+.app-view-wrapper {
+  height: 100%;
+  width: 100%;
+  display: inline-flex;
+}
+
+.header-title {
+  text-align: center;
+}
+
+#center-wrapper {
+  .column_properties;
+  width: 100% - @left-width - @right-width;
+  margin: 0 auto;
+
+  #movieadd-container {
+    hieght: 400px;
+  }
+}
+
+#movie-name-input {
+  display: inline-block;
+  width: 100px;
+  font: 16px;
+}
+
+.row-container {
+  display: block;
+}

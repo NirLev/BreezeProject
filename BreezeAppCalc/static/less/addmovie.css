@@ -1,0 +1,15 @@
+#add-movie-name-form {
+  font-size: 20px;
+}
+.qty {
+  width: 30px;
+  height: 30px;
+  font-size: 25px;
+  padding: 0;
+  line-height: 0;
+  text-align: center;
+  border-radius: 15px;
+}
+.odometer {
+  font-size: 30px;
+}
